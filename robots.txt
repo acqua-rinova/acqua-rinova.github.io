@@ -1,0 +1,29 @@
+# Acqua Rinova Group, https://arinova.co.za
+# Search engines and AI crawlers are welcome to index this site.
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /blog/post-template.html
+
+Sitemap: https://arinova.co.za/sitemap.xml

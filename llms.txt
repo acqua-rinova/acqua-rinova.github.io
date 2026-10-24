@@ -7,8 +7,9 @@
 - Scenario water budgets: re-runs mine site water balances and farm water budgets at 80%, 60% and 40% of normal rainfall, with a high-heat case.
 - Licence and allocation review: water use licences, irrigation rights, carry-over rules and curtailment exposure.
 - Monitoring discipline: borehole telemetry, abstraction logs, flow meters and soil moisture probes.
-- Productive mine-water reuse through Blue Harvest Projects, its water-agriculture division, using the Rows and Roots discovery tool.
-- Acqua Nexus: a water decision-making tool in development that brings site, farm and catchment data into one view.
+- Rinova Nexus Decision Analytics: a data-driven AI decision tool, in development, that brings site, farm and catchment data into one view.
+- Blue Harvest: industrial water mitigation that turns mine water and surplus land into productive agriculture, using the Roots and Rows automated design tool.
+- Water Risk Immune System: a governance framework and team training programme for regenerative, risk-aware water systems.
 
 ## Who it serves
 
@@ -21,7 +22,7 @@ Primary geography: Southern Africa.
 
 ## Brand structure
 
-Acqua Rinova Group (parent) > Acqua Nexus (water decision-making tool) > Blue Harvest Projects (water-agriculture division) > Rows and Roots (agriculture discovery tool within Blue Harvest Projects).
+Acqua Rinova Group (parent). Products: Rinova Nexus Decision Analytics; Blue Harvest, with the Roots and Rows design tool; Water Risk Immune System.
 
 ## Leadership
 
@@ -31,6 +32,7 @@ Acqua Rinova Group (parent) > Acqua Nexus (water decision-making tool) > Blue Ha
 ## Pages
 
 - [Home](https://arinova.co.za/): market context, why the water problem is structural, capabilities, operating model, use cases, commercial case, principles, leadership and contact.
+- [Products](https://arinova.co.za/products/): the three products in detail.
 - [Our work](https://arinova.co.za/gallery/): photographs from mine water, agriculture and catchment projects.
 - [Insights](https://arinova.co.za/blog/): articles on water, mining and agriculture in shared catchments.
 

@@ -1,6 +1,6 @@
 // Acqua Rinova Group: gallery viewer.
 // Opens gallery photographs in a larger view with previous/next and
-// keyboard arrows. Without JavaScript each photograph opens on its own.
+// keyboard arrows. Photographs are embedded as backgrounds (see gallery/photo-*.css).
 (function () {
   "use strict";
 
@@ -15,11 +15,11 @@
   function show(i) {
     current = (i + links.length) % links.length;
     var link = links[current];
-    var thumb = link.querySelector("img");
+    var thumb = link.querySelector(".gimg");
     var fig = link.closest("figure");
     var cap = fig && fig.querySelector("figcaption");
-    img.src = link.getAttribute("href");
-    img.alt = thumb ? thumb.alt : "";
+    img.className = "lightbox-img gimg gimg-" + link.getAttribute("data-photo");
+    img.setAttribute("aria-label", thumb ? thumb.getAttribute("aria-label") : "");
     caption.innerHTML = cap ? cap.innerHTML : "";
   }
 

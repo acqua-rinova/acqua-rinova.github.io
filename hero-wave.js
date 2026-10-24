@@ -178,7 +178,7 @@
       var x = d.x * W + Math.sin(t * 0.25 + d.phase) * 14 + px;
       var y = d.y * H + Math.sin(t * 0.6 + d.phase) * 11 + py;
       var tilt = Math.sin(t * 0.45 + d.phase) * 0.09;
-      teardrop(x, y, d.r, tilt, t, d.phase);
+      teardrop(x, y, d.r * 1.3, tilt, t, d.phase);
     });
   }
 
@@ -195,12 +195,21 @@
     mouse.y += (mouse.ty - mouse.y) * 0.08;
     mouse.px += (mouse.tpx - mouse.px) * 0.05;
     mouse.py += (mouse.tpy - mouse.py) * 0.05;
-    draw((now - start) / 1000);
+    var still = reduceMotion.matches;
+    draw(still ? 4 : (now - start) / 1000);
+    // Under reduced motion the wave only moves in answer to the mouse,
+    // so stop drawing once the mouse has settled.
+    if (still && Math.abs(mouse.tx - mouse.x) < 0.5 && Math.abs(mouse.ty - mouse.y) < 0.5 &&
+        Math.abs(mouse.tpx - mouse.px) < 0.001 && Math.abs(mouse.tpy - mouse.py) < 0.001) {
+      running = false;
+      return;
+    }
     rafId = requestAnimationFrame(frame);
   }
 
-  function play() {
-    if (running || reduceMotion.matches || !visible || document.hidden) return;
+  function play(fromMouse) {
+    if (running || !visible || document.hidden) return;
+    if (reduceMotion.matches && !fromMouse) return;
     running = true;
     rafId = requestAnimationFrame(frame);
   }
@@ -217,9 +226,12 @@
     mouse.tpx = mouse.tx / rect.width;
     mouse.tpy = mouse.ty / rect.height;
     if (mouse.x < -1000) { mouse.x = mouse.tx; mouse.y = mouse.ty; }
+    play(true);
   });
   hero.addEventListener("pointerleave", function () {
     mouse.tx = -9999; mouse.ty = -9999; mouse.tpx = 0.5; mouse.tpy = 0.5;
+    mouse.x = -9999; mouse.y = -9999;
+    play(true);
   });
 
   if ("IntersectionObserver" in window) {

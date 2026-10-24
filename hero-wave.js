@@ -20,6 +20,7 @@
   var WATER_LIGHT = [178, 228, 242];  // crest highlight
   var WATER_MID = [138, 210, 232];    // light blue water
   var WATER_DEEP = [98, 186, 216];    // trough
+  var EDGE_SOFTNESS = 0.15;           // how softly the droplets fade into the page (0 = crisp edge)
   var WATER_ALPHA = 0.2;              // how solid the light blue is (0 = clear, 1 = solid)
 
   // Tuning
@@ -203,13 +204,13 @@
     ctx.scale(sx, sy);
 
     dropPath(r);
-    ctx.shadowColor = "rgba(8, 86, 140, 0.25)";
-    ctx.shadowBlur = r * 0.9;
-    ctx.shadowOffsetY = r * 0.35;
+    ctx.shadowColor = "rgba(8, 86, 140, 0.12)";
+    ctx.shadowBlur = r * 1.2;
+    ctx.shadowOffsetY = r * 0.25;
     var glass = ctx.createLinearGradient(0, -1.75 * r, 0, r);
-    glass.addColorStop(0, "rgb(236,248,251)");
-    glass.addColorStop(0.5, "rgb(196,233,242)");
-    glass.addColorStop(1, "rgb(150,212,228)");
+    glass.addColorStop(0, "rgba(226,244,249,0.85)");
+    glass.addColorStop(0.5, "rgba(190,230,240,0.85)");
+    glass.addColorStop(1, "rgba(150,212,228,0.9)");
     ctx.fillStyle = glass;
     ctx.fill();
     ctx.shadowColor = "transparent";
@@ -231,13 +232,18 @@
     water.addColorStop(1, "rgb(8,86,140)");
     ctx.fillStyle = water;
     ctx.fill();
+    // Feather the edge so the drop melts into the page instead of having a rim
+    if (EDGE_SOFTNESS > 0) {
+      dropPath(r);
+      ctx.lineWidth = r * EDGE_SOFTNESS;
+      ctx.strokeStyle = "rgba(255,255,255,0.35)";
+      ctx.filter = "blur(" + Math.max(0.5, r * 0.08) + "px)";
+      ctx.stroke();
+      ctx.filter = "none";
+    }
     ctx.restore();
 
     // Rim and highlight
-    dropPath(r);
-    ctx.lineWidth = Math.max(1, r * 0);
-    ctx.strokeStyle = "rgba(14,111,136,0)";
-    ctx.stroke();
     ctx.beginPath();
     ctx.ellipse(-0.42 * r, -0.55 * r, 0.16 * r, 0.42 * r, 0.35, 0, Math.PI * 2);
     ctx.fillStyle = "rgba(255,255,255,0.85)";

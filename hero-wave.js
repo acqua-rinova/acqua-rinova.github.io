@@ -17,6 +17,9 @@
   var DEEP = [8, 86, 140];     // #08568C
   var TEAL = [14, 111, 136];   // #0E6F88
   var AQUA = [38, 170, 185];   // #26AAB9
+  var WATER_LIGHT = [214, 242, 248];  // crest highlight
+  var WATER_MID = [150, 214, 230];    // light blue water
+  var WATER_DEEP = [92, 178, 204];    // trough
 
   // Tuning
   var DROP_SCALE = 1.04;       // droplet size (was 1.3, now 20% smaller)
@@ -24,6 +27,8 @@
   var GRAVITY = 1500;          // px/s² for a falling droplet
   var RESPAWN_AFTER = 3.2;     // seconds before a new droplet forms
   var STILL_TIME = 4;          // wave pose used under reduced motion
+  var MOUSE_FOLLOW = 0.2;      // how quickly the wave follows the mouse (was 0.08)
+  var WAKE = true;             // small ripples trail behind a moving mouse
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var W = 0, H = 0, dpr = 1, cols = 0, rows = 0, mobile = false;
@@ -84,7 +89,7 @@
       var front = age * 7.5;                         // how far the rings have travelled
       if (dist > front + 1) continue;
       var edge = Math.min(1, (front + 1 - dist));    // soft leading edge
-      var fade = Math.exp(-age * 0.85) * Math.exp(-dist * 0.08);
+      var fade = Math.exp(-age * rp.decay) * Math.exp(-dist * 0.08);
       var wave = Math.sin(dist * 1.35 - age * 9.5);
       h += wave * rp.amp * fade * edge;
       glow += Math.max(0, wave) * fade * edge * 1.1;
@@ -97,7 +102,7 @@
     var depth = r / (rows - 1);                    // 0 = far, 1 = near
     var s = 0.35 + 0.85 * Math.pow(depth, 1.2);    // perspective scale
     var top = mobile ? 0.72 : 0.46;
-    var baseY = H * (top + (1.02 - top) * Math.pow(depth, 1.35));
+    var baseY = H * (top + (1.12 - top) * Math.pow(depth, 1.35));
     var u = c / (cols - 1) - 0.5;
     var x = W * 0.5 + u * W * (0.9 + 1.1 * s);
     var amp = H * (mobile ? 0.035 : 0.05) * s;
@@ -123,8 +128,32 @@
     grid.length = rows;
   }
 
+  // Translucent light-blue water surface between the mesh lines. Each cell
+  // is shaded by its slope, so crests catch the light and troughs deepen.
+  function drawWater() {
+    for (var r = 0; r < rows - 1; r++) {
+      for (var c = 0; c < cols - 1; c++) {
+        var a = grid[r][c], b = grid[r][c + 1], e = grid[r + 1][c + 1], f = grid[r + 1][c];
+        var depth = (a.d + f.d) / 2;
+        var cell = Math.max(4, f.y - a.y);
+        var slope = ((b.y - a.y) + (e.y - f.y)) / (2 * cell);      // side-to-side tilt
+        var rise = ((f.y - a.y) - (e.y - b.y)) / (2 * cell);         // towards or away from us
+        var light = Math.max(-1, Math.min(1, slope * 1.6 + rise * 1.2));
+        var col = light > 0 ? mix(WATER_MID, WATER_LIGHT, light) : mix(WATER_MID, WATER_DEEP, -light);
+        var glow = (a.glow + b.glow + e.glow + f.glow) / 4;
+        var alpha = 0.10 + 0.24 * depth + glow * 0.18;
+        ctx.fillStyle = rgba(glow > 0.05 ? mix(col, WATER_LIGHT, Math.min(1, glow)) : col, alpha);
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.lineTo(e.x, e.y); ctx.lineTo(f.x, f.y);
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+  }
+
   function drawWave() {
     var c, r;
+    drawWater();
     ctx.lineWidth = 1;
     for (r = 0; r < rows; r++) {
       for (c = 0; c < cols; c++) {
@@ -227,6 +256,34 @@
     return { c: best, r: r, y: row[best].y, s: row[best].s };
   }
 
+  function addRipple(c, r, amp, decay) {
+    ripples.push({ c: c, r: r, t0: clock, amp: amp, decay: decay });
+    if (ripples.length > 16) ripples.shift();
+  }
+
+  // Wake: as the mouse moves across the water it leaves small ripples,
+  // stronger when it moves faster
+  var lastWake = { x: 0, y: 0, t: 0 };
+  function wake(x, y) {
+    if (!WAKE || !grid.length) return;
+    var dx = x - lastWake.x, dy = y - lastWake.y;
+    var moved = Math.sqrt(dx * dx + dy * dy);
+    if (moved < 38 || clock - lastWake.t < 0.09) return;
+    var speed = moved / Math.max(0.016, clock - lastWake.t);
+    lastWake = { x: x, y: y, t: clock };
+    var best = null, bestD = Infinity;
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var p = grid[r][c];
+        var d2 = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y);
+        if (d2 < bestD) { bestD = d2; best = { c: c, r: r }; }
+      }
+    }
+    // Only when the mouse is actually over the water
+    if (!best || bestD > 60 * 60) return;
+    addRipple(best.c, best.r, Math.min(22, 6 + speed / 120), 1.6);
+  }
+
   function knock(d) {
     if (d.state !== "float") return;
     d.state = "fall";
@@ -238,8 +295,7 @@
 
   function splash(d, land) {
     var size = d.r / 20;
-    ripples.push({ c: land.c, r: land.r, t0: clock, amp: 34 * size + 14 });
-    if (ripples.length > 8) ripples.shift();
+    addRipple(land.c, land.r, 34 * size + 14, 0.85);
     var n = mobile ? 5 : 7;
     for (var i = 0; i < n; i++) {
       var a = -Math.PI / 2 + (i / (n - 1) - 0.5) * 2.1 + (Math.random() - 0.5) * 0.3;
@@ -340,10 +396,10 @@
     lastNow = now;
     clock += dt;
     // Ease the mouse so the response feels soft, not twitchy
-    mouse.x += (mouse.tx - mouse.x) * 0.08;
-    mouse.y += (mouse.ty - mouse.y) * 0.08;
-    mouse.px += (mouse.tpx - mouse.px) * 0.05;
-    mouse.py += (mouse.tpy - mouse.py) * 0.05;
+    mouse.x += (mouse.tx - mouse.x) * MOUSE_FOLLOW;
+    mouse.y += (mouse.ty - mouse.y) * MOUSE_FOLLOW;
+    mouse.px += (mouse.tpx - mouse.px) * MOUSE_FOLLOW * 0.6;
+    mouse.py += (mouse.tpy - mouse.py) * MOUSE_FOLLOW * 0.6;
     draw(waveTime(), dt);
     // Under reduced motion, only draw while something the visitor did is still moving
     if (reduceMotion.matches && !busy() &&
@@ -393,6 +449,7 @@
     if (mouse.x < -1000) { mouse.x = mouse.tx; mouse.y = mouse.ty; }
     var d = hitDrop(p.x, p.y, 2);
     if (d) knock(d);
+    wake(p.x, p.y);
     play(true);
   });
   hero.addEventListener("pointerdown", function (e) {

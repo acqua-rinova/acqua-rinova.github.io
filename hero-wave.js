@@ -235,7 +235,7 @@
 
     // Rim and highlight
     dropPath(r);
-    ctx.lineWidth = Math.max(1, r * 0.02);
+    ctx.lineWidth = Math.max(1, r * 0);
     ctx.strokeStyle = "rgba(14,111,136,0)";
     ctx.stroke();
     ctx.beginPath();

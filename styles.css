@@ -129,9 +129,27 @@ a:hover { color: var(--accent-deep); }
 .nav-list a:hover { color: var(--text); }
 .wordmark img { width: 30px; height: auto; }
 .nav-list .nav-cta { color: var(--accent); font-weight: 700; }
-.nav-list li:not(:last-child) { display: none; }
-@media (min-width: 760px) {
-  .nav-list li:not(:last-child) { display: list-item; }
+.nav-list a[aria-current="page"] {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--aqua);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.45em;
+}
+/* On phones the menu sits in its own row under the name and scrolls sideways */
+@media (max-width: 759px) {
+  html { scroll-padding-top: 7rem; }
+  .header-inner { flex-wrap: wrap; padding-top: 0.7rem; row-gap: 0.4rem; }
+  .site-header nav {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+            mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+  .site-header nav::-webkit-scrollbar { display: none; }
+  .nav-list { gap: 1.4rem; padding: 0.15rem 0 0.8rem; white-space: nowrap; }
 }
 
 /* Hero */
@@ -489,9 +507,110 @@ a:hover { color: var(--accent-deep); }
 .article-body { max-width: var(--measure); font-size: 1.125rem; }
 .article-body h2 { font-size: 1.6rem; font-weight: 500; margin: 2.5rem 0 1rem; }
 
+/* Gallery */
+.gallery-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.25rem);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+.gallery-item figure { margin: 0; }
+.gallery-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--mist);
+}
+.gallery-link img,
+.gallery-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.gallery-link img { transition: transform 0.5s ease; }
+.gallery-link:hover img,
+.gallery-link:focus-visible img { transform: scale(1.03); }
+.gallery-photo.is-empty {
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(38, 170, 185, 0.12) 12px 13px),
+    var(--mist);
+  display: grid;
+  place-items: center;
+}
+.gallery-photo.is-empty::after {
+  content: "Photograph to be supplied";
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.gallery-item figcaption {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 1rem;
+}
+.gallery-tag { color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+.gallery-title { font-size: 1.15rem; line-height: 1.3; color: var(--text); }
+.gallery-text { color: var(--muted); max-width: 46ch; }
+
+/* Photograph viewer */
+.lightbox {
+  width: min(92vw, 1200px);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--text);
+  overflow: visible;
+}
+.lightbox::backdrop { background: rgba(28, 42, 48, 0.82); }
+.lightbox-figure { margin: 0; }
+.lightbox-img {
+  width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+  background: var(--slate);
+  border-radius: 4px 4px 0 0;
+}
+.lightbox-caption {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+.lightbox-btn {
+  position: absolute;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--text);
+  font: 400 1.8rem/1 var(--font);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(28, 42, 48, 0.25);
+}
+.lightbox-btn:hover { background: var(--accent); color: var(--accent-ink); }
+.lightbox-close { top: -1rem; right: -1rem; font-size: 1.6rem; }
+.lightbox-prev, .lightbox-next { top: 38vh; transform: translateY(-50%); }
+.lightbox-prev { left: -1.4rem; }
+.lightbox-next { right: -1.4rem; }
+.lightbox.is-single .lightbox-prev,
+.lightbox.is-single .lightbox-next { display: none; }
+@media (max-width: 640px) {
+  .lightbox-close { top: 0.5rem; right: 0.5rem; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .gallery-link img { transition: none; }
   .waterline,
   .hub-diagram .flow,
   .hub-diagram .hub-pulse { animation: none; }

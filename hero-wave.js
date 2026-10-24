@@ -17,9 +17,10 @@
   var DEEP = [8, 86, 140];     // #08568C
   var TEAL = [14, 111, 136];   // #0E6F88
   var AQUA = [38, 170, 185];   // #26AAB9
-  var WATER_LIGHT = [214, 242, 248];  // crest highlight
-  var WATER_MID = [150, 214, 230];    // light blue water
-  var WATER_DEEP = [92, 178, 204];    // trough
+  var WATER_LIGHT = [178, 228, 242];  // crest highlight
+  var WATER_MID = [138, 210, 232];    // light blue water
+  var WATER_DEEP = [98, 186, 216];    // trough
+  var WATER_ALPHA = 0.5;              // how solid the light blue is (0 = clear, 1 = solid)
 
   // Tuning
   var DROP_SCALE = 1.04;       // droplet size (was 1.3, now 20% smaller)
@@ -138,10 +139,10 @@
         var cell = Math.max(4, f.y - a.y);
         var slope = ((b.y - a.y) + (e.y - f.y)) / (2 * cell);      // side-to-side tilt
         var rise = ((f.y - a.y) - (e.y - b.y)) / (2 * cell);         // towards or away from us
-        var light = Math.max(-1, Math.min(1, slope * 1.6 + rise * 1.2));
+        var light = Math.max(-1, Math.min(1, slope * 1.2 + rise * 0.9));
         var col = light > 0 ? mix(WATER_MID, WATER_LIGHT, light) : mix(WATER_MID, WATER_DEEP, -light);
         var glow = (a.glow + b.glow + e.glow + f.glow) / 4;
-        var alpha = 0.10 + 0.24 * depth + glow * 0.18;
+        var alpha = WATER_ALPHA * (0.55 + 0.45 * depth) + glow * 0.15;
         ctx.fillStyle = rgba(glow > 0.05 ? mix(col, WATER_LIGHT, Math.min(1, glow)) : col, alpha);
         ctx.beginPath();
         ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.lineTo(e.x, e.y); ctx.lineTo(f.x, f.y);

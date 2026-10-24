@@ -1,43 +1,48 @@
 # Acqua Rinova Group
 
-> Acqua Rinova Group (Pty) Ltd is a water-first company based in Johannesburg, South Africa, established in 2026. It helps mines and farms that share a catchment plan their water under changing climate conditions, and assesses mine water and surplus mine land as productive inputs for agriculture. Tagline: "The intelligence beneath every drop."
+> Acqua Rinova Group (Pty) Ltd is a specialist water consulting firm based in Johannesburg, South Africa, established in 2026. It delivers water consulting, analytics and implementation services for mining, agriculture and industry across Africa. Positioning: "From water risk to water resilience." Tagline: "Water, Reimagined."
 
-## What the company does
+The name combines Acqua (Italian for water) and Rinova (from rinnovare, to renew and restore): turning water from a liability into a force for regeneration.
 
-- Scenario water budgets: re-runs mine site water balances and farm water budgets at 80%, 60% and 40% of normal rainfall, with a high-heat case.
-- Licence and allocation review: water use licences, irrigation rights, carry-over rules and curtailment exposure.
-- Monitoring discipline: borehole telemetry, abstraction logs, flow meters and soil moisture probes.
-- Rinova Nexus Decision Analytics: a data-driven AI decision tool, in development, that brings site, farm and catchment data into one view.
-- Blue Harvest: industrial water mitigation that turns mine water and surplus land into productive agriculture, using the Roots and Rows automated design tool.
-- Water Risk Immune System: a governance framework and team training programme for regenerative, risk-aware water systems.
+## Maturity Framework
+
+Four tiers that take organisations from technical capability to transformational, regenerative outcomes (Diagnose, Enable, Integrate, Transform, Regenerate):
+
+1. Foundation: consulting, technical capability, project delivery, technology deployment. Division: Blue Core Solutions.
+2. Operational enablement: operational capability, technology enabled. Division: Blue Harvest Projects.
+3. Strategic enablement: integration and intelligence, data-driven delivery. Division: Rinova Nexus.
+4. Transformation: regeneration, people and impact. Division: Blue Transform.
+
+## Divisions
+
+- Blue Core Solutions: specialist water risk and hydrogeological consulting for the mining sector. Practice areas: hydrogeology; surface water and flood risk; mine water management; safety and risk studies; regulatory and advisory (NI 43-101, JORC inputs, independent technical reviews).
+- Blue Harvest Projects: industrial water mitigation, from aquifer potential studies, water supply feasibility, abstraction licensing and allocation to post-closure water strategy, and turning mine water and surplus land into productive agriculture. Roots & Rows is its automated design tool.
+- Rinova Nexus (Integration & Intelligence): advanced analytics for water management, covering data and intelligence systems, reporting and compliance, monitoring and risk analytics, governance and standards, climate and scenario planning, and circular economy and water efficiency.
+- Blue Transform (Strategy, Change & Delivery): strategy, transformation and programme delivery, led by Ronell van Staden. Its signature framework, the Water Risk Immune System, governs water risk and trains teams towards a regenerative mindset, working between communities and industry for outcomes where both win.
 
 ## Who it serves
 
-- Mining houses with dewatering volumes and surplus infrastructure land
-- Commercial agriculture and irrigation schemes in shared catchments
-- Lenders, insurers and Development Finance Institutions (DFIs)
+- Mining houses, including those with dewatering volumes and surplus infrastructure land
+- Large-scale commercial farmers and irrigation schemes
+- Project developers, investors, lenders, insurers and Development Finance Institutions (DFIs)
 - Community and Social and Labour Plan (SLP) teams
 
-Primary geography: Southern Africa.
-
-## Brand structure
-
-Acqua Rinova Group (parent). Products: Rinova Nexus Decision Analytics; Blue Harvest, with the Roots and Rows design tool; Water Risk Immune System.
+Primary geography: Africa.
 
 ## Leadership
 
-- Ronell van Staden, Co-founder and Director
-- MJ Damhuis, Co-founder and Director
+- Ronell van Staden, Principal Strategy Consultant and Co-founder (ronell@arinova.co.za)
+- Matthew Damhuis, Principal Water Scientist and Co-founder (matthew@arinova.co.za)
 
 ## Pages
 
-- [Home](https://arinova.co.za/): market context, why the water problem is structural, capabilities, operating model, use cases, commercial case, principles, leadership and contact.
-- [Products](https://arinova.co.za/products/): the three products in detail.
-- [Our work](https://arinova.co.za/gallery/): photographs from mine water, agriculture and catchment projects.
-- [Insights](https://arinova.co.za/blog/): articles on water, mining and agriculture in shared catchments.
+- [Home](https://arinova.co.za/): who we are, purpose and values, the Maturity Framework, our approach, services across the project lifecycle, market context, use cases, outcomes, why Acqua Rinova Group, and contact.
+- [Products](https://arinova.co.za/products/): the four divisions in detail.
+- [Our work](https://arinova.co.za/gallery/): photographs from projects.
+- [Insights](https://arinova.co.za/blog/): articles on water, mining and agriculture.
 
 ## Contact
 
+- Ronell van Staden: ronell@arinova.co.za
+- Matthew Damhuis: matthew@arinova.co.za
 - LinkedIn: https://www.linkedin.com/company/acqua-rinova-group/
-
-Book a one-hour discovery briefing: [EMAIL TO BE SUPPLIED]

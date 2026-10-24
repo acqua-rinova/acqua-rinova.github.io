@@ -20,7 +20,7 @@
   var WATER_LIGHT = [178, 228, 242];  // crest highlight
   var WATER_MID = [138, 210, 232];    // light blue water
   var WATER_DEEP = [98, 186, 216];    // trough
-  var EDGE_SOFTNESS = 0.15;           // how softly the droplets fade into the page (0 = crisp edge)
+  var EDGE_SOFTNESS = 0.4;           // how softly the droplets fade into the page (0 = crisp edge)
   var WATER_ALPHA = 0.2;              // how solid the light blue is (0 = clear, 1 = solid)
 
   // Tuning

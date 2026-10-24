@@ -1,16 +1,20 @@
 /* Acqua Rinova Group
-   Palette: dark catchment base, one ochre accent (the waterline on a dam wall).
-   Accent colour is provisional until the brand palette is supplied. */
+   Palette taken from the brand marks: a clean white page, slate from the
+   shield frame and leaves, deep teal from the water drop, bright aqua from
+   the wave in the document header. */
 
 :root {
-  --ink: #0F1E24;          /* page base */
-  --ink-deep: #0B171C;     /* hero and footer */
-  --surface: #14272D;      /* alternate sections */
-  --line: #2B434A;         /* rules and borders */
-  --text: #E6ECEA;         /* body text, 14.6:1 on --ink */
-  --muted: #A8B8BA;        /* secondary text, 8.4:1 on --ink */
-  --accent: #D9A84E;       /* single accent, 8.0:1 on --ink */
-  --accent-ink: #0F1E24;   /* text on accent */
+  --paper: #FFFFFF;        /* page base */
+  --mist: #F1F7F9;         /* alternate sections, pale aqua */
+  --line: #D9E3E7;         /* rules and borders */
+  --text: #1C2A30;         /* slate, 14.8:1 on white */
+  --muted: #4E6169;        /* secondary text, 6.5:1 on white */
+  --accent: #0E6F88;       /* deep teal from the drop, 5.8:1 on white */
+  --accent-deep: #08568C;  /* hover and pressed, 7.7:1 on white */
+  --aqua: #26AAB9;         /* bright aqua, decorative only (waterline, flows) */
+  --accent-ink: #FFFFFF;   /* text on accent */
+  --slate: #1C2A30;        /* footer */
+  --slate-text: #C9D6DB;   /* footer text, 10.9:1 on slate */
 
   /* Drop a photograph in here when available, e.g. url("/assets/hero.jpg") */
   --hero-image: none;
@@ -33,7 +37,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--ink);
+  background: var(--paper);
   color: var(--text);
   font-family: var(--font);
   font-weight: 400;
@@ -56,7 +60,7 @@ p { margin: 0 0 1.1em; }
 p:last-child { margin-bottom: 0; }
 
 a { color: var(--text); text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
-a:hover { color: var(--accent); }
+a:hover { color: var(--accent-deep); }
 
 :focus-visible {
   outline: 3px solid var(--accent);
@@ -88,11 +92,11 @@ a:hover { color: var(--accent); }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(11, 23, 28, 0.94);
+  background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid var(--line);
 }
 @supports (backdrop-filter: blur(8px)) {
-  .site-header { background: rgba(11, 23, 28, 0.8); backdrop-filter: blur(8px); }
+  .site-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); }
 }
 .header-inner {
   display: flex;
@@ -102,6 +106,10 @@ a:hover { color: var(--accent); }
   min-height: 4rem;
 }
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text);
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: 0.01em;
@@ -119,7 +127,8 @@ a:hover { color: var(--accent); }
 }
 .nav-list a { text-decoration: none; color: var(--muted); }
 .nav-list a:hover { color: var(--text); }
-.nav-list .nav-cta { color: var(--accent); font-weight: 500; }
+.wordmark img { width: 30px; height: auto; }
+.nav-list .nav-cta { color: var(--accent); font-weight: 700; }
 .nav-list li:not(:last-child) { display: none; }
 @media (min-width: 760px) {
   .nav-list li:not(:last-child) { display: list-item; }
@@ -128,21 +137,36 @@ a:hover { color: var(--accent); }
 /* Hero */
 .hero {
   position: relative;
-  min-height: min(88vh, 820px);
+  min-height: min(84vh, 780px);
   display: flex;
-  align-items: flex-end;
-  padding: clamp(6rem, 14vw, 10rem) 0 clamp(4rem, 9vw, 7rem);
+  align-items: center;
+  padding: clamp(4rem, 10vw, 7rem) 0 clamp(4rem, 9vw, 6.5rem);
   background:
-    linear-gradient(180deg, rgba(11, 23, 28, 0.55) 0%, rgba(11, 23, 28, 0.78) 55%, rgba(11, 23, 28, 0.97) 100%),
-    linear-gradient(90deg, rgba(11, 23, 28, 0.85) 0%, rgba(11, 23, 28, 0.2) 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.85) 55%, rgba(255, 255, 255, 0.4) 100%),
     var(--hero-image) center / cover no-repeat,
-    radial-gradient(120% 90% at 85% 10%, #1C3A42 0%, var(--ink-deep) 60%);
+    linear-gradient(180deg, var(--paper) 0%, var(--paper) 62%, var(--mist) 100%);
   isolation: isolate;
+  overflow: hidden;
+}
+.hero-mark {
+  position: absolute;
+  right: clamp(-6rem, -4vw, -2rem);
+  top: 50%;
+  width: clamp(16rem, 34vw, 30rem);
+  transform: translateY(-50%);
+  z-index: -1;
+  opacity: 0.16;
+  mix-blend-mode: multiply;
+}
+@media (min-width: 1000px) {
+  .hero-mark { right: max(var(--gutter), calc((100% - 1280px) / 2 + var(--gutter))); width: clamp(18rem, 30vw, 26rem); opacity: 1; }
+  .hero-inner > * { max-width: 58%; }
 }
 .hero-inner { max-width: 1280px; }
 .hero-company {
   font-weight: 500;
   color: var(--accent);
+  font-weight: 700;
   margin-bottom: 1.25rem;
   font-size: 1.05rem;
 }
@@ -173,7 +197,7 @@ a:hover { color: var(--accent); }
   right: 0;
   bottom: 0;
   height: 2px;
-  background: var(--accent);
+  background: var(--aqua);
   transform-origin: left center;
   animation: waterline-fill 1.6s cubic-bezier(.2,.7,.2,1) 0.3s both;
 }
@@ -193,7 +217,7 @@ a:hover { color: var(--accent); }
   border-radius: 2px;
   border: 2px solid var(--accent);
 }
-.button:hover { background: transparent; color: var(--accent); }
+.button:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: var(--accent-ink); }
 .text-link {
   font-weight: 500;
   color: var(--text);
@@ -204,7 +228,7 @@ a:hover { color: var(--accent); }
 
 /* Sections */
 .section { padding: var(--section-space) 0; }
-.section-alt { background: var(--surface); }
+.section-alt { background: var(--mist); }
 .section-title,
 .split > h2,
 .split > div > h2 {
@@ -251,7 +275,7 @@ a:hover { color: var(--accent); }
   .thesis-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
 }
 .thesis-block {
-  border-left: 2px solid var(--accent);
+  border-left: 3px solid var(--aqua);
   padding-left: 1.25rem;
 }
 .thesis-block h3 { font-size: 1.3rem; margin-bottom: 0.9rem; }
@@ -297,7 +321,7 @@ a:hover { color: var(--accent); }
 .hub-diagram .ring-inner { stroke-dasharray: 2 6; }
 .hub-diagram .spoke { stroke: var(--line); stroke-width: 1.5; }
 .hub-diagram .flow {
-  stroke: var(--accent);
+  stroke: var(--aqua);
   stroke-width: 2;
   stroke-dasharray: 6 14;
   stroke-linecap: round;
@@ -313,17 +337,17 @@ a:hover { color: var(--accent); }
   from { stroke-dashoffset: 0; }
   to   { stroke-dashoffset: -40; }
 }
-.hub-diagram .node circle { fill: var(--ink); stroke: var(--accent); stroke-width: 2; }
+.hub-diagram .node circle { fill: var(--paper); stroke: var(--accent); stroke-width: 2; }
 .hub-diagram text {
   fill: var(--text);
   font-family: var(--font);
   font-size: 24px;
   font-weight: 500;
 }
-.hub-diagram .hub-core { fill: var(--ink); stroke: var(--accent); stroke-width: 2; }
+.hub-diagram .hub-core { fill: var(--mist); stroke: var(--accent); stroke-width: 2; }
 .hub-diagram .hub-pulse {
   fill: none;
-  stroke: var(--accent);
+  stroke: var(--aqua);
   stroke-width: 1.5;
   transform-origin: 320px 320px;
   animation: pulse 3.2s ease-out infinite;
@@ -404,8 +428,8 @@ a:hover { color: var(--accent); }
   aspect-ratio: 4 / 5;
   max-width: 300px;
   background:
-    repeating-linear-gradient(135deg, transparent 0 12px, rgba(217, 168, 78, 0.07) 12px 13px),
-    var(--ink);
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(38, 170, 185, 0.12) 12px 13px),
+    var(--mist);
   border: 1px solid var(--line);
   margin-bottom: 1.25rem;
   display: grid;
@@ -427,18 +451,22 @@ a:hover { color: var(--accent); }
 
 /* Footer */
 .site-footer {
-  background: var(--ink-deep);
-  border-top: 1px solid var(--line);
+  background: var(--slate);
   padding: 2.5rem 0;
   font-size: 0.9rem;
-  color: var(--muted);
+  color: var(--slate-text);
 }
 .footer-inner { display: grid; gap: 0.5rem; }
 @media (min-width: 760px) {
-  .footer-inner { grid-template-columns: 1fr auto; }
+  .footer-inner { grid-template-columns: 1fr auto auto; column-gap: 2rem; align-items: center; }
 }
 .site-footer p { margin: 0; }
-.site-footer a { color: var(--muted); overflow-wrap: anywhere; }
+.site-footer a { color: var(--slate-text); overflow-wrap: anywhere; }
+.social-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.site-footer a:hover, .social-link:hover, .social-link:focus-visible { color: #FFFFFF; }
+.site-footer :focus-visible { outline-color: var(--aqua); }
+.social-link .icon { flex: none; }
+.contact-alt { margin: 1.5rem 0 0; color: var(--muted); }
 
 /* Blog */
 .page-head { padding: clamp(5rem, 10vw, 7rem) 0 clamp(2.5rem, 5vw, 4rem); border-bottom: 1px solid var(--line); }

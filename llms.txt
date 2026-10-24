@@ -16,7 +16,7 @@ Four tiers that take organisations from technical capability to transformational
 ## Divisions
 
 - Blue Core Solutions: specialist water risk and hydrogeological consulting for the mining sector. Its product is the Water Risk Immune System (WRIS), the core of the company's approach: an integrated framework and technology ecosystem that detects, analyses and manages water risk across the full lifecycle (sense early, respond smart, build long-term resilience), with four subsystems (sense-making, sensing, response, temporal and structural) across eleven dimensions, powered by Rinova Nexus, delivered with executable artefacts and team training. Practice areas: hydrogeology; surface water and flood risk; mine water management; safety and risk studies; regulatory and advisory (NI 43-101, JORC inputs, independent technical reviews).
-- Blue Harvest Projects: industrial water mitigation, from aquifer potential studies, water supply feasibility, abstraction licensing and allocation to post-closure water strategy, and turning mine water and surplus land into productive agriculture. Roots & Rows is its automated design tool.
+- Blue Harvest Projects: industrial water mitigation, from aquifer potential studies, water supply feasibility, abstraction licensing and allocation to post-closure water strategy, and turning mine water and surplus land into productive agriculture. Its Roots & Rows product, GeoHarvest Discovery, is a conference-ready discovery tool that builds a costed, site-specific regeneration proposal live with the decision-maker, using live climate and soil data, sourced benchmarks and a break-even solver.
 - Rinova Nexus (Integration & Intelligence): advanced analytics for water management, covering data and intelligence systems, reporting and compliance, monitoring and risk analytics, governance and standards, climate and scenario planning, and circular economy and water efficiency. The Rinova Nexus platform is an AI-powered water intelligence decision engine for mining operations: it collects and integrates sensor, laboratory, operational and external data; analyses and predicts through the WRIS framework; visualises and reports through real-time dashboards, automated ESG and regulatory reporting and blockchain-verified records; and enables predictive early warnings and compliance assurance.
 - Blue Transform (Strategy, Change & Delivery): strategy, transformation and programme delivery, led by Ronell van Staden. It carries the Water Risk Immune System into organisations through change management and training, moving teams towards a regenerative mindset and working between communities and industry for outcomes where both win.
 
@@ -37,7 +37,8 @@ Primary geography: Africa.
 ## Pages
 
 - [Home](https://arinova.co.za/): who we are, purpose and values, the Maturity Framework, our approach, services across the project lifecycle, market context, use cases, outcomes, why Acqua Rinova Group, and contact.
-- [Products](https://arinova.co.za/products/): the four divisions in detail, the Water Risk Immune System (WRIS) and the Rinova Nexus platform.
+- [Products](https://arinova.co.za/products/): the four divisions in detail, the Water Risk Immune System (WRIS), Roots & Rows GeoHarvest Discovery and the Rinova Nexus platform.
+- [Case study](https://arinova.co.za/case-study/): From arid ground to growing enterprise. A multi-year Blue Harvest programme with one of Africa's largest open-pit iron ore mines in the Northern Cape, turning dewatering liability and land into long-term regional value.
 - [Our work](https://arinova.co.za/gallery/): photographs from projects.
 - [Insights](https://arinova.co.za/blog/): articles on water, mining and agriculture.
 

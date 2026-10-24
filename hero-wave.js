@@ -20,7 +20,7 @@
   var WATER_LIGHT = [178, 228, 242];  // crest highlight
   var WATER_MID = [138, 210, 232];    // light blue water
   var WATER_DEEP = [98, 186, 216];    // trough
-  var WATER_ALPHA = 0.5;              // how solid the light blue is (0 = clear, 1 = solid)
+  var WATER_ALPHA = 0.2;              // how solid the light blue is (0 = clear, 1 = solid)
 
   // Tuning
   var DROP_SCALE = 1.04;       // droplet size (was 1.3, now 20% smaller)

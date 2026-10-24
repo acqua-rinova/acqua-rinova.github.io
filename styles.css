@@ -1342,3 +1342,9 @@ a:hover { color: var(--accent-deep); }
 .cs-enablers ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .cs-enablers li { font-size: 0.85rem; font-weight: 700; color: var(--accent-deep); background: var(--mist); border-radius: 999px; padding: 0.35rem 0.8rem; }
 @media (min-width: 1040px) { .cs-outcomes { grid-template-columns: repeat(3, 1fr); } }
+
+/* Gallery photographs (embedded, see gallery/photo-*.css) */
+.gimg { display: block; width: 100%; aspect-ratio: 4 / 3; background-size: cover; background-repeat: no-repeat; background-color: var(--mist); transition: transform 0.5s ease; }
+.gallery-link:hover .gimg, .gallery-link:focus-visible .gimg { transform: scale(1.03); }
+.lightbox-img.gimg { aspect-ratio: auto; height: min(76vh, 760px); background-size: contain; background-position: center !important; background-color: var(--slate); border-radius: 4px 4px 0 0; transform: none !important; }
+@media (prefers-reduced-motion: reduce) { .gimg { transition: none; } }

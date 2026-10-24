@@ -14,6 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/gallery/photo-iron-orchard.css">
+  <link rel="stylesheet" href="/gallery/photo-chemaf-etoile.css">
+  <link rel="stylesheet" href="/gallery/photo-yanfolila.css">
+  <link rel="stylesheet" href="/gallery/photo-tutuka.css">
   <title>Our work | Acqua Rinova Group</title>
   <meta name="description" content="Photographs from Acqua Rinova Group projects: mine water, agriculture and catchment work across Africa.">
   <link rel="canonical" href="https://arinova.co.za/gallery/">
@@ -50,89 +54,63 @@
     <section class="page-head" aria-labelledby="gallery-title">
       <div class="wrap">
         <h1 id="gallery-title">Our work.</h1>
-        <p>Projects where mine water, land and agriculture meet. Select a photograph to see it larger.</p>
+        <p>From the field: mine water, hydrogeology, agriculture and the catchments they share across Africa. Select a photograph to see it in full.</p>
       </div>
     </section>
     <section class="section gallery-section" aria-label="Project photographs">
       <div class="wrap">
         <!-- ADDING A PHOTOGRAPH
-             1. Resize it to about 1600 px wide and save it as a JPG under 400 KB.
-             2. Upload it into the /assets/ folder, named e.g. gallery-karoo-trial.jpg
-             3. Copy this block into the list below, newest first, and fill it in.
-                Then delete one of the placeholder blocks.
-
-          <li class="gallery-item">
-            <figure>
-              <a class="gallery-link" href="/assets/gallery-karoo-trial.jpg">
-                <img src="/assets/gallery-karoo-trial.jpg" alt="Describe what the photograph shows" loading="lazy">
-              </a>
-              <figcaption>
-                <span class="gallery-tag">Agriculture</span>
-                <strong class="gallery-title">Project name</strong>
-                <span class="gallery-text">One line on what was done, where, and the result.</span>
-              </figcaption>
-            </figure>
-          </li>
-
-             Tags in use: Mine water, Agriculture, Catchment. -->
+             Each photograph is embedded in its own small stylesheet in this folder
+             (photo-<name>.css), so no image upload is needed. Send new photographs
+             to Claude with a tag, a project name and one line, and it will prepare
+             the stylesheet and the block below.
+             Tags in use: Agriculture, Mine water, Hydrogeology, Catchment. -->
         <ul class="gallery-grid">
           <li class="gallery-item">
             <figure>
-              <div class="gallery-photo is-empty" role="img" aria-label="Photograph to be supplied"></div>
-              <figcaption>
-                <span class="gallery-tag">Mine water</span>
-                <strong class="gallery-title">[Project name]</strong>
-                <span class="gallery-text">[One line on what was done, where, and the result.]</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="gallery-item">
-            <figure>
-              <div class="gallery-photo is-empty" role="img" aria-label="Photograph to be supplied"></div>
+              <a class="gallery-link" href="#photo-iron-orchard" id="photo-iron-orchard" data-photo="iron-orchard">
+                <span class="gimg gimg-iron-orchard" role="img" aria-label="Aerial view of a fenced trial orchard with rows of young trees and crops, water tanks and site buildings, set in Northern Cape scrubland with mine dumps on the horizon" style="background-position: 50% 72%;"></span>
+              </a>
               <figcaption>
                 <span class="gallery-tag">Agriculture</span>
-                <strong class="gallery-title">[Project name]</strong>
-                <span class="gallery-text">[One line on what was done, where, and the result.]</span>
+                <strong class="gallery-title">Iron Orchard, Northern Cape, South Africa</strong>
+                <span class="gallery-text">Water risk transformation with Blue Harvest Projects: a field trial testing crops on mining land in the semi-arid Northern Cape.</span>
               </figcaption>
             </figure>
           </li>
           <li class="gallery-item">
             <figure>
-              <div class="gallery-photo is-empty" role="img" aria-label="Photograph to be supplied"></div>
-              <figcaption>
-                <span class="gallery-tag">Catchment</span>
-                <strong class="gallery-title">[Project name]</strong>
-                <span class="gallery-text">[One line on what was done, where, and the result.]</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="gallery-item">
-            <figure>
-              <div class="gallery-photo is-empty" role="img" aria-label="Photograph to be supplied"></div>
-              <figcaption>
-                <span class="gallery-tag">Agriculture</span>
-                <strong class="gallery-title">[Project name]</strong>
-                <span class="gallery-text">[One line on what was done, where, and the result.]</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="gallery-item">
-            <figure>
-              <div class="gallery-photo is-empty" role="img" aria-label="Photograph to be supplied"></div>
+              <a class="gallery-link" href="#photo-chemaf-etoile" id="photo-chemaf-etoile" data-photo="chemaf-etoile">
+                <span class="gimg gimg-chemaf-etoile" role="img" aria-label="Terraced open pit with pools of water on its floor, with woodland and waste dumps beyond" style="background-position: 50% 55%;"></span>
+              </a>
               <figcaption>
                 <span class="gallery-tag">Mine water</span>
-                <strong class="gallery-title">[Project name]</strong>
-                <span class="gallery-text">[One line on what was done, where, and the result.]</span>
+                <strong class="gallery-title">Chemaf &#201;toile, Democratic Republic of the Congo</strong>
+                <span class="gallery-text">Water ponding on the pit floor and benches of an open-pit copper and cobalt mine.</span>
               </figcaption>
             </figure>
           </li>
           <li class="gallery-item">
             <figure>
-              <div class="gallery-photo is-empty" role="img" aria-label="Photograph to be supplied"></div>
+              <a class="gallery-link" href="#photo-yanfolila" id="photo-yanfolila" data-photo="yanfolila">
+                <span class="gimg gimg-yanfolila" role="img" aria-label="Panorama of burnt savanna woodland with a field vehicle and a pile of freshly dug red soil" style="background-position: 20% 50%;"></span>
+              </a>
+              <figcaption>
+                <span class="gallery-tag">Hydrogeology</span>
+                <strong class="gallery-title">Yanfolila, Mali</strong>
+                <span class="gallery-text">Fieldwork in the dry-season savanna woodland of southern Mali.</span>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="gallery-item">
+            <figure>
+              <a class="gallery-link" href="#photo-tutuka" id="photo-tutuka" data-photo="tutuka">
+                <span class="gimg gimg-tutuka" role="img" aria-label="Power station cooling towers behind a tree line, with antelope grazing in green grassland in the foreground" style="background-position: 42% 60%;"></span>
+              </a>
               <figcaption>
                 <span class="gallery-tag">Catchment</span>
-                <strong class="gallery-title">[Project name]</strong>
-                <span class="gallery-text">[One line on what was done, where, and the result.]</span>
+                <strong class="gallery-title">Tutuka Power Station, Mpumalanga, South Africa</strong>
+                <span class="gallery-text">Industry and nature in one landscape: antelope grazing in the grassland beside the cooling towers.</span>
               </figcaption>
             </figure>
           </li>
@@ -143,7 +121,7 @@
 
   <dialog class="lightbox" aria-label="Photograph viewer">
     <figure class="lightbox-figure">
-      <img class="lightbox-img" src="" alt="">
+      <div class="lightbox-img gimg" role="img" aria-label=""></div>
       <figcaption class="lightbox-caption"></figcaption>
     </figure>
     <button class="lightbox-btn lightbox-prev" type="button" aria-label="Previous photograph">&#8249;</button>
